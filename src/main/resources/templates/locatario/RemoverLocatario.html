@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Locatório</title>
+	<link rel="stylesheet" th:href="@{/css/cliente/styleTelaRemoverCliente.css}">
+</head>
+
+<body>
+	<div class="container">
+		<form method = "post" th:action= "@{/empresarial/locatario/delete}">
+			
+			<label for="cpf">Digite o CPF do locatário que deseja remover:</label>
+			<input type="text" id="cpf" name="cpf" maxlength="11" placeholder="Apenas números" required>
+			<div th:if="${mensagemSucesso}" class = "sucess-message">
+							<p th:text="${mensagemSucesso}"></p>
+						</div>
+			<div th:if="${mensagemErro}" class = "error-message">
+				<p th:text="${mensagemErro}"></p>
+			</div>
+			<button type = "submit" class = "btn-primary">Remover</button>
+		</form>
+	</div>
+</body>

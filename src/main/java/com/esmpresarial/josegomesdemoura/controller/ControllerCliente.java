@@ -1,0 +1,148 @@
+package com.esmpresarial.josegomesdemoura.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.esmpresarial.josegomesdemoura.dto.ClienteRequest;
+import com.esmpresarial.josegomesdemoura.exception.CpfIncorretoException;
+import com.esmpresarial.josegomesdemoura.exception.CpfJaExisteException;
+import com.esmpresarial.josegomesdemoura.models.Cliente;
+import com.esmpresarial.josegomesdemoura.service.ClienteService;
+
+import jakarta.validation.Valid;
+
+@Controller
+public class ControllerCliente {
+	@Autowired
+	ClienteService service;
+	
+	@GetMapping("/empresarial/cliente/opcoes")
+	public String telaClienteOpcoes() {
+		return"cliente/ClientesOpcoes";
+	}
+	
+	@GetMapping("/empresarial/cliente/delete")
+	public String telaRemoverCliente() {
+		return "cliente/TelaRemoverCliente";
+	}
+	
+	@GetMapping("/empresarial/cliente/cadastro")
+	public String telaCadastroCliente(Model model) {
+		ClienteRequest clienteRequest = new ClienteRequest();
+		model.addAttribute("clienteRequest", clienteRequest);
+		return "cliente/TelaCadastroCliente";
+	}
+	
+	@GetMapping("/empresarial/cliente/procurar")
+	public String telaCadastroCliente() {
+		return "cliente/ProcurarClienteTela";
+	}
+	
+	@GetMapping("/empresarial/cliente/editar/procurar")
+	public String telaProcurarClienteEditar() {
+		return "cliente/ProcurarClienteEditar";
+	}
+	
+	@GetMapping("/empresarial/cliente/editar")
+	public String telaEditarCliente() {
+		return "cliente/TelaEditarCliente";
+	}	
+	
+	@PostMapping("/empresarial/cliente/delete")
+	public String removerClientePorCpf(@RequestParam("cpf") String cpf, Model model) {
+		try {
+			service.removerCliente(cpf);
+			model.addAttribute("mensagemSucesso", "Cliente removido com sucesso!");
+		}
+		catch(Exception e) {
+			model.addAttribute("mensagemErro", e.getMessage());
+		}
+		
+		return "cliente/TelaRemoverCliente";
+	}
+	
+	@PostMapping("/empresarial/cliente/cadastro")
+	public String cadastrarCliente(@Valid ClienteRequest clienteRequest, BindingResult result) {
+		if(result.hasErrors()) {
+			return "cliente/TelaCadastroCliente";
+		}
+		else{
+			try {
+				Cliente cliente = clienteRequest.cast();
+				service.addCliente(cliente);
+				return "redirect:/empresarial";
+			}
+			catch(CpfJaExisteException e){
+				result.rejectValue("cpf", "error.cpf.duplicado", e.getMessage());
+				return "cliente/TelaCadastroCliente";
+			}
+			catch(CpfIncorretoException e) {
+				result.rejectValue("cpf", "error.cpf.malFormatado", e.getMessage());
+				return "cliente/TelaCadastroCliente";
+			}
+		}
+	}
+	
+	@PostMapping("/empresarial/cliente/procurar")
+	public String procurarCliente(@RequestParam String name, Model model) {
+		try{
+			Cliente cliente = service.procurarClientePorNome(name.trim());
+			model.addAttribute("cliente", cliente);
+		}catch(Exception e){
+			model.addAttribute("mensagemErro", e.getMessage());
+		}
+		
+		return "cliente/ProcurarClienteTela";		
+	}
+	
+	@PostMapping("/empresarial/cliente/editar/procurar")
+	public String procurarClienteParaEdicao(Model model, @RequestParam String name) {
+		try {
+			Cliente cliente = service.procurarClientePorNome(name.trim());
+			ClienteRequest clienteDto = new ClienteRequest();
+			
+			clienteDto.setId(cliente.getId());
+			clienteDto.setCpf(cliente.getCpf());
+			clienteDto.setName(cliente.getName());
+			clienteDto.setPhone(cliente.getPhone());
+			clienteDto.setJob(cliente.getJob());
+			clienteDto.setGenero(cliente.getGenero());
+			clienteDto.setEmail(cliente.getEmail());
+			model.addAttribute("clienteDto", clienteDto);
+			model.addAttribute("cliente", cliente);
+			return "cliente/TelaEditarCliente";
+			
+		}catch(Exception e) {
+			model.addAttribute("mensagemErro", e.getMessage());
+			return "cliente/ProcurarClienteEditar";
+		}
+	}
+	@PostMapping("/empresarial/cliente/editar/edit")
+	public String editarCliente(@Valid@ModelAttribute("clienteDto") ClienteRequest clienteDto, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "cliente/TelaEditarCliente"; 
+		}
+		try{
+			Cliente cliente = service.findById(clienteDto.getId());
+			cliente.setCpf(clienteDto.getCpf());
+			cliente.setName(clienteDto.getName().trim());
+			cliente.setPhone(clienteDto.getPhone());
+			cliente.setJob(clienteDto.getJob().trim());
+			cliente.setGenero(clienteDto.getGenero());
+			cliente.setEmail(clienteDto.getEmail().trim());
+			
+			service.salvarClienteEditado(cliente);
+			model.addAttribute("mensagemSucesso", "Cliente atualizado com sucesso!");
+ 
+		}catch(Exception e){
+			model.addAttribute("mensagemErro", e.getMessage());
+			return "cliente/TelaEditarCliente";
+		}
+		return "cliente/ProcurarClienteEditar";
+	}	
+}

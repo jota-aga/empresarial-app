@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/cliente/styleTelaRemoverCliente.css}"> </head>
+<body>
+    <div class="container">
+        <h2>Buscar Cliente por Nome</h2>
+
+        <div th:if="${mensagemErro}" class="error-message-general">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <form method="post" th:action="@{/empresarial/cliente/procurar}">
+            <div class="form-group">
+                <label for="name">Digite o nome do cliente:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <button type="submit" class="btn-primary">Buscar</button>
+        </form>
+
+        <div th:if="${cliente}">
+            <h3>Dados do Cliente:</h3>
+            <p><strong>Nome:</strong> <span th:text="${cliente.name}"></span></p>
+            <p><strong>CPF:</strong> <span th:text="${cliente.cpf}"></span></p>
+            <p><strong>Telefone:</strong> <span th:text="${cliente.phone}"></span></p>
+            <p><strong>E-mail:</strong> <span th:text="${cliente.email}"></span></p>
+            <p><strong>Gênero:</strong> <span th:text="${cliente.genero}"></span></p>
+            <p><strong>Profissão:</strong> <span th:text="${cliente.job}"></span></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+	<link rel="stylesheet" th:href="@{/css/locatario/OpçõesLocatario.css}">
+</head>
+<body>
+    <div class="container_buttons">
+		
+		<a th:href="@{/empresarial/locatario/cadastro}" class="button-wrapper">
+        	<button class="buttons">Cadastrar Locatário</button>
+		</a>
+		
+		<a th:href="@{/empresarial/locatario/delete}" class="button-wrapper">
+		<button class="buttons">Remover Locatário</button>
+		</a>
+		
+		<a th:href="@{/empresarial/locatario/editar/procurar}" class="button-wrapper">
+        <button class="buttons">Editar Locatário</button>
+		</a>
+		
+		<a th:href="@{/empresarial/locatario/procurar}" class="button-wrapper">
+        	<button class="buttons">Procurar Locatário</button>
+		</a>
+    </div>
+</body>
+</html>
