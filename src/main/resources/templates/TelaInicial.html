@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+	<link rel="stylesheet" th:href="@{css/cliente/styleTelaInicial.css}">
+</head>
+<body>
+    <div class="container_buttons">
+		<a th:href="@{/empresarial/locatario}" class="button-wrapper">
+        	<button class="buttons">Locatório</button>
+		</a>
+		<a th:href="@{/empresarial/cliente}" class="button-wrapper">
+        	<button class="buttons">Clientes</button>
+		</a>
+		<a th:href="@{/empresarial/sala}" class="button-wrapper">
+        	<button class="buttons">Salas</button>
+		</a>
+        <button class="buttons">Relatório</button>
+    </div>
+</body>
+</html>
