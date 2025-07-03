@@ -1,0 +1,260 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; /* Alinha o conteúdo ao topo, não ao centro vertical */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+  
+}
+
+.main-container {
+	margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Organiza os filhos em coluna */
+    align-items: center; /* Centraliza horizontalmente os filhos */
+    gap: 30px; /* Espaçamento entre as seções (formulários) */
+    width: 100%;
+    max-width: 600px; /* Largura máxima para o conteúdo central */
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    width: 100%; /* Garante que os títulos ocupem toda a largura */
+}
+
+.form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Faz a seção ocupar toda a largura disponível no main-container */
+    box-sizing: border-box;
+}
+
+.form-section.editable-form-section {
+    /* Estilos específicos para o formulário de edição se necessário */
+    margin-top: 0; /* A margem já é controlada pelo 'gap' do main-container */
+}
+
+
+/* Estilos para o formulário dentro da seção */
+.styled-form {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos do formulário em coluna */
+    gap: 15px; /* Espaçamento entre os grupos de formulário */
+}
+
+.form-group {
+    margin-bottom: 0; /* Removido margin-bottom aqui, agora controlado pelo gap do styled-form */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Um pouco menos de margem para labels */
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%; /* Ocupa 100% da largura do pai */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"][readonly] {
+    background-color: #e9ecef; /* Cor de fundo para campos somente leitura */
+    cursor: not-allowed; /* Cursor de "não permitido" */
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não houver espaço suficiente */
+    gap: 15px; /* Espaçamento entre os rádios */
+    align-items: center;
+    margin-top: 5px; /* Pequena margem acima do grupo de rádio */
+}
+
+.radio-group label {
+    margin-bottom: 0;
+    display: inline-flex; /* Permite ícone e texto do rádio alinhados */
+    align-items: center;
+    font-weight: normal;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px; /* Tamanho médio */
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Faz o botão ocupar sua própria linha */
+    width: 100%; /* Ocupa a largura total do seu container */
+    margin-top: 20px; /* Margem superior para separar */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.success-message {
+    color: #56FF95; 
+	font-size: 0.9em;
+	margin-top: 5px;
+	margin-bottom: 0;
+	display: block;
+}
+
+.error-message {
+    color: #dc3545; 
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 0;
+    display: block;
+}
+
+.btn-cancel {
+    display: inline-block; /* Para que o <a> possa ter padding, largura etc. */
+    background-color: #6c757d; /* Cinza, cor comum para cancelar/secundário */
+    color: white;
+    padding: 12px 25px; /* Mesmo padding que o .btn-primary para tamanho similar */
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none; /* Remove sublinhado padrão do link */
+    margin-top: 10px; /* Margem superior para separar do botão de adicionar */
+    width: 100%; /* Ocupa a largura total do container */
+    box-sizing: border-box; /* Inclui padding e border na largura */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268; /* Escurece no hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    background-color: #343a40; /* Cor de fundo escura (Bootstrap dark) */
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Alinha o brand à esquerda e os links à direita */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa toda a largura */
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.navbar-brand a {
+    color: #f8f9fa; /* Cor de texto clara */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none; /* Remove sublinhado */
+    white-space: nowrap; /* Evita quebra de linha em telas pequenas */
+}
+
+.navbar-nav {
+    list-style: none; /* Remove os marcadores de lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Exibe os itens em linha */
+    gap: 1.5rem; /* Espaçamento entre os itens */
+}
+
+.nav-item {
+    /* Não precisa de estilo extra aqui por enquanto */
+}
+
+.nav-link {
+    color: #f8f9fa; /* Cor de texto clara */
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave no hover */
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+.nav-link:hover {
+    background-color: #007bff; /* Azul no hover */
+    color: #ffffff;
+}
+
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 10px;
+        gap: 20px;
+    }
+    .form-section {
+        padding: 20px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    .btn-primary {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .btn-primary {
+        margin-top: 15px;
+    }
+	
+	.navbar {
+	        flex-direction: column; /* Empilha os itens verticalmente */
+	        align-items: flex-start; /* Alinha à esquerda */
+	        padding: 1rem;
+	    }
+
+	    .navbar-nav {
+	        flex-direction: column; /* Itens da lista em coluna */
+	        width: 100%; /* Ocupa toda a largura */
+	        margin-top: 1rem;
+	        gap: 0.5rem; /* Espaçamento menor */
+	    }
+
+	    .nav-item {
+	        width: 100%; /* Faz cada item ocupar toda a largura */
+	    }
+
+	    .nav-link {
+	        display: block; /* Ocupa toda a largura do item */
+	        text-align: center; /* Centraliza o texto no link */
+	        width: calc(100% - 1.6rem); /* Ajusta para padding */
+	        padding: 0.8rem; /* Padding maior para touch */
+	    }
+		
+		.form-section {
+		        padding: 15px;
+		    }
+		    .radio-group {
+		        flex-direction: column; /* Stack radios vertically on very small screens */
+		        align-items: flex-start;
+		    }
+		    .radio-group label {
+		        margin-bottom: 5px;
+		    }
+}

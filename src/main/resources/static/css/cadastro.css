@@ -1,0 +1,184 @@
+/* ARQUIVO CSS COMBINADO E CORRIGIDO */
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Para empilhar navbar e conteúdo */
+    justify-content: flex-start;
+    align-items: center; /* Centraliza horizontalmente o conteúdo principal */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box; /* Boa prática */
+    /* Removido padding geral aqui para que a navbar possa ter 100% de largura */
+}
+
+.container {
+    margin-top: 20px; /* Espaço entre a navbar e o formulário */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: calc(100% - 20px); /* Ajusta a largura para o padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-group label {
+    margin-bottom: 0;
+    display: inline-block;
+    font-weight: normal;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 18px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.success-message {
+    color: #56FF95; 
+	font-size: 0.9em;
+	margin-top: 5px;
+	margin-bottom: 0;
+	display: block;
+}
+
+.error-message {
+    color: #dc3545; 
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 0;
+    display: block;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar-brand a {
+    color: #f8f9fa;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    /* Sem estilo extra aqui por enquanto */
+}
+
+.nav-link {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+/* Estilo responsivo para navbar (do segundo arquivo) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 0.5rem;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        text-align: center;
+        width: calc(100% - 1.6rem);
+        padding: 0.8rem;
+    }
+}
+
+/* Mídia query para o container (do primeiro arquivo, ajustada) */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+}

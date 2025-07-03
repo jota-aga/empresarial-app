@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Locatário</title>
+    <link rel="stylesheet" th:href="@{/css/procurar.css}"> </head>
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+    <div class="container">
+        <h2>Buscar Locatário por Nome</h2>
+
+        <div th:if="${mensagemErro}" class="error-message">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <form method="post" th:action="@{/empresarial/locatario/procurar}">
+            <div class="form-group">
+                <label for="name">Digite o nome do locatário:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <button type="submit" class="btn-primary">Buscar</button>
+        </form>
+
+        <div th:if="${locatario}">
+            <h3>Dados do Locatário:</h3>
+            <p><strong>Nome:</strong> <span th:text="${locatario.name}"></span></p>
+            <p><strong>CPF:</strong> <span th:text="${locatario.cpf}"></span></p>
+			<p><strong>RG:</strong> <span th:text="${locatario.rg}"></span></p>
+			<p><strong>Nacionalidade:</strong> <span th:text="${locatario.nacionalidade}"></span></p>
+            <p><strong>Telefone:</strong> <span th:text="${locatario.phone}"></span></p>
+            <p><strong>E-mail:</strong> <span th:text="${locatario.email}"></span></p>
+            <p><strong>Gênero:</strong> <span th:text="${locatario.genero}"></span></p>
+            <p><strong>Profissão:</strong> <span th:text="${locatario.job}"></span></p>
+			<p><strong>Estado Civil:</strong> <span th:text="${locatario.estadoCivil}"></span></p>
+			<div th:if="${locatario.endereco}">
+				<h4>Endereço:</h4>
+				<p><strong>Rua:</strong> <span th:text="${locatario.endereco.rua}"></span></p>
+				<p><strong>Bairro:</strong> <span th:text="${locatario.endereco.bairro}"></span></p>
+				<p><strong>Número:</strong> <span th:text="${locatario.endereco.numero}"></span></p>
+				<p><strong>Cep:</strong> <span th:text="${locatario.endereco.cep}"></span></p>
+			</div>
+        </div>
+    </div>
+</body>
+</html>

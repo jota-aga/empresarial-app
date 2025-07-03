@@ -1,0 +1,138 @@
+/* src/main/resources/static/css/styleTelaRemoverCliente.css */
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+    margin: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+}
+
+.container {
+	margin-top: 20px;
+    background-color: #fff;
+    padding: 30px; /* Padding interno do container */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Definindo uma largura máxima para o formulário de remoção */
+    box-sizing: border-box;
+    text-align: center; /* Centraliza o conteúdo (label, input, button) se forem inline ou inline-block */
+}
+
+form { /* Usei .form conforme seu HTML, mas .form-group seria mais descritivo */
+    margin-bottom: 25px; /* Espaço maior abaixo do grupo label/input */
+}
+
+label {
+    display: block; /* Faz a label ocupar sua própria linha */
+    margin-bottom: 10px; /* Espaço abaixo da label */
+    color: #555;
+    font-weight: bold;
+    font-size: 1.1em; /* Um pouco maior para destaque */
+}
+
+/* Seletor específico para input type="text" (seu CPF) */
+input[type="text"] {
+    width: calc(100% - 20px); /* Largura total menos padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    /* Remover margin-bottom aqui, pois o .form já tem a margem */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px; /* Tamanho médio */
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Faz o botão ocupar sua própria linha */
+    width: 100%; /* Ocupa a largura total do seu container */
+    margin-top: 20px; /* Margem superior para separar */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: #dc3545; 
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 0;
+    display: block;
+}
+	   
+	   .navbar {
+	       background-color: #343a40; /* Cor de fundo escura (Bootstrap dark) */
+	       padding: 1rem 1.5rem;
+	       display: flex;
+	       justify-content: space-between; /* Alinha o brand à esquerda e os links à direita */
+	       align-items: center;
+	       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	       width: 100%; /* Ocupa toda a largura */
+	       box-sizing: border-box; /* Inclui padding na largura total */
+	   }
+
+	   .navbar-brand a {
+	       color: #f8f9fa; /* Cor de texto clara */
+	       font-size: 1.5rem;
+	       font-weight: bold;
+	       text-decoration: none; /* Remove sublinhado */
+	       white-space: nowrap; /* Evita quebra de linha em telas pequenas */
+	   }
+
+	   .navbar-nav {
+	       list-style: none; /* Remove os marcadores de lista */
+	       margin: 0;
+	       padding: 0;
+	       display: flex; /* Exibe os itens em linha */
+	       gap: 1.5rem; /* Espaçamento entre os itens */
+	   }
+
+	   .nav-item {
+	       /* Não precisa de estilo extra aqui por enquanto */
+	   }
+
+	   .nav-link {
+	       color: #f8f9fa; /* Cor de texto clara */
+	       text-decoration: none;
+	       font-size: 1rem;
+	       padding: 0.5rem 0.8rem;
+	       border-radius: 0.25rem;
+	       transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave no hover */
+	       white-space: nowrap; /* Evita quebra de linha */
+	   }
+
+	   .nav-link:hover {
+	       background-color: #007bff; /* Azul no hover */
+	       color: #ffffff;
+	   }
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+        max-width: 90%; /* Ocupa mais espaço em telas pequenas */
+    }
+    input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+    .btn-primary {
+        padding: 12px 25px; /* Ajuste o padding em telas pequenas */
+        font-size: 18px;
+        width: 100%; /* Ocupa a largura total em telas pequenas */
+        margin: 20px auto 0 auto; /* Centraliza e ajusta margem */
+    }
+}

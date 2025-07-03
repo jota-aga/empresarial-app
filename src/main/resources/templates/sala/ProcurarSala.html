@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Sala</title>
+    <link rel="stylesheet" th:href="@{/css/procurar.css}"> </head>
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+    <div class="container">
+        <h2>Buscar Sala por Número</h2>
+
+        <div th:if="${mensagemErro}" class="error-message">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <form method="post" th:action="@{/empresarial/sala/procurar}">
+            <div class="form-group">
+                <label for="numero">Digite o número da sala:</label>
+                <input type="text" id="numero" name="numero" required>
+            </div>
+            <button type="submit" class="btn-primary">Buscar</button>
+        </form>
+
+        <div th:if="${sala}">
+            <h3>Dados da Sala:</h3>
+            <p><strong>Número:</strong> <span th:text="${sala.numero}"></span></p>
+			<div th:if="${sala.locatario != null}">
+			<p><strong>Locatário:</strong> <span th:text="${sala.locatario.name}"></span></p>
+			<p><strong>CPF:</strong> <span th:text="${sala.locatario.cpf}"></span></p>
+			<p><strong>Profissão:</strong> <span th:text="${sala.locatario.job}"></span></p>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+	        // Função para permitir apenas números em um input
+	        function allowOnlyNumbers(inputElement) {
+	            inputElement.addEventListener('input', function(event) {
+	                // Remove qualquer caractere que não seja um dígito
+	                this.value = this.value.replace(/\D/g, '');
+	            });
+	        }
+
+	        // Aplica a função aos campos de CPF e Telefone
+	        const numeroInput = document.getElementById('numero');
+
+	        allowOnlyNumbers(numeroInput);
+	    </script>
+</body>
+</html>
