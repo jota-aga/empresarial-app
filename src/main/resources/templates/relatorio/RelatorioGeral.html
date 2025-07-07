@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Geral de Consultas</title>
+    <link rel="stylesheet" th:href="@{/css/relatorio.css}"> <link rel="stylesheet" th:href="@{/css/styleNavbar.css}"> </head>
+<body>
+	
+	<nav th:fragment="main-navbar" class="navbar">
+			    <div class="navbar-brand">
+			        <a th:href="@{/empresarial}">Início</a>
+			    </div>
+			    <ul class="navbar-nav">
+			        <li class="nav-item">
+			            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+			        </li>
+			        <li class="nav-item">
+			            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+			        </li>
+			        <li class="nav-item">
+			            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+			        </li>
+			        <li class="nav-item">
+			            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+			        </li>
+			    </ul>
+			</nav>
+
+    <div class="main-container">
+        <h2>Relatório Geral</h2>
+
+        <div th:if="${mensagemErro}" class="error-message">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <div th:if="${relatorio == null or relatorio.totalConsultas == 0}" class="no-data-message">
+            <p>Nenhuma consulta encontrada para gerar o relatório.</p>
+            <p>Verifique se há consultas cadastradas no histórico.</p>
+        </div>
+
+        <div th:unless="${relatorio == null or relatorio.totalConsultas == 0}" class="report-content-section">
+            <h3>Visão Geral:</h3>
+            <p><strong>Total de Consultas Analisadas:</strong> <span th:text="${relatorio.totalConsultas}">0</span></p>
+
+            <h3>Distribuição por Gênero:</h3>
+            <ul class="report-list"> <li>
+                    <strong>Masculino:</strong>
+                    <span th:text="${relatorio.masculino}">0</span> 
+                    (<span th:text="${#numbers.formatDecimal(relatorio.porcentagemMasculino, 1, 2) + '%'}">0.00%</span>)
+                </li>
+                <li>
+                    <strong>Feminino:</strong>
+                    <span th:text="${relatorio.feminino}">0</span>
+                    (<span th:text="${#numbers.formatDecimal(relatorio.porcentagemFeminino, 1, 2) + '%'}">0.00%</span>)
+                </li>
+                </ul> 
+				<h3>Distribuição por Profissão:</h3>
+				            <div th:if="${relatorio.profissoes.isEmpty()}">
+				                <p>Nenhuma profissão registrada nas consultas.</p>
+				            </div>
+				            <ul th:unless="${relatorio.profissoes.isEmpty()}" class="report-list"> <li th:each="entry : ${relatorio.profissoes.entrySet()}">
+				                    <strong><span th:text="${entry.key}">Profissão</span>:</strong>
+				                    <span th:text="${entry.value}">0</span> clientes </li>
+				            </ul> 
+							<div th:unless="${relatorio == null or relatorio.totalConsultas == 0}" class="report-content-section">
+				<h3>Distribuição por Faixa Etária:</h3>       
+							  <ul th:unless="${relatorio.faixasEtarias.isEmpty()}" class="report-list">
+							      <li th:each="faixa : ${relatorio.faixasEtarias}">
+							         <strong><span th:text="${faixa.minimo}">0</span> - <span th:text="${faixa.maximo}">0</span> anos:</strong>
+							          <span th:text="${faixa.quantidade}">0</span> clientes
+							         </li>
+							            </ul>
+
+							            </div>			
+				
+				</div> 
+			<div class="report-actions">
+            <a th:href="@{/empresarial}" class="btn-back">Voltar ao Início</a>
+        </div>
+    </div>
+</body>
+</html>

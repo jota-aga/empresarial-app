@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+	<link rel="stylesheet" th:href="@{/css/opções.css}">
+</head>
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+    <div class="container_buttons">
+		
+		<a th:href="@{/empresarial/relatorio/geral}" class="button-wrapper">
+        	<button class="buttons">Relatorio Geral</button>
+		</a>
+		<a th:href="@{/empresarial/relatorio/sala}" class="button-wrapper">
+			<button class="buttons">Relatorio Específico</button>
+			</a>
+		
+    </div>
+</body>
+</html>

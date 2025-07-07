@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Sala</title>
+	<link rel="stylesheet" th:href="@{/css/remover.css}">
+</head>
+
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+	<div class="container">
+		<form method = "post" th:action= "@{/empresarial/sala/delete}">
+			
+			<label for="cpf">Digite o número da sala que deseja remover:</label>
+			<input type="text" id="numero" name="numero" placeholder="Apenas números" required>
+			<div th:if="${mensagemSucesso}" class = "success-message">
+							<p th:text="${mensagemSucesso}"></p>
+						</div>
+			<div th:if="${mensagemErro}" class = "error-message">
+				<p th:text="${mensagemErro}"></p>
+			</div>
+			<button type = "submit" class = "btn-primary">Remover</button>
+		</form>
+	</div>
+</body>

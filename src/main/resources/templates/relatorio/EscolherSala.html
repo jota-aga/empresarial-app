@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Sala para Relatório</title> <link rel="stylesheet" th:href="@{/css/editar.css}"> </head>
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+    <div class="main-container">
+        <h2>Escolha uma Sala para o Relatório</h2> 
+		<div th:if="${mensagemErro}" class="error-message">
+            <p th:text="${mensagemErro}"></p>
+			</div>
+        </div>
+     
+
+        <div class="form-section editable-form-section">
+            <h3>Escolha uma Sala</h3>
+            <form method="get" th:action="@{/empresarial/relatorio/sala/gerar}" th:object="${salaDto}" class="styled-form">
+                
+                <div th:if="${salas}">
+                    <div class="form-group">
+                        <label for="numero">Selecione uma Sala:</label> <select id="numero" th:field="*{numero}" class="form-control" required>
+                            <option value="">-- Selecione uma Sala --</option>
+                            <option th:each="sala : ${salas}" 
+                                th:value="${sala.numero}" 
+                                th:text="${sala.numero+' | '+ (sala.locatario != null ? sala.locatario.name + ' (' + sala.locatario.cpf + ')' : 'Sem Locatário')}"
+                                th:selected="${sala.numero == salaDto.numero}"></option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}" class="error-message"></p>
+                    </div>
+                </div>
+				
+				<button type="submit" class="btn-primary">Gerar Relatório</button>
+				
+			</form>
+            <a th:href="@{/empresarial/relatorio}" class="btn-cancel">Cancelar</a> 
+        </div>
+    </div>
+</body>
+</html>

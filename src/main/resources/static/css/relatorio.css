@@ -1,0 +1,184 @@
+/* src/main/resources/static/css/styleRelatorio.css */
+
+/* Basic container (reutilizado de outros forms, se aplicável) */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+    margin: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+}
+
+.main-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Mais largo para relatórios */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+h3, h4 {
+    color: #007bff; /* Azul para subtítulos */
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.report-list {
+    list-style: none; /* Remove marcadores padrão */
+    padding: 0;
+    width: 100%;
+    max-width: 500px; /* Limita largura da lista para melhor leitura */
+    margin: 0 auto; /* Centraliza a lista */
+}
+
+.report-list li {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between; /* Espaça conteúdo */
+    align-items: center;
+    font-size: 1em;
+    color: #333;
+}
+
+.report-list li strong {
+    color: #000;
+}
+
+.no-data-message {
+    text-align: center;
+    padding: 40px;
+    background-color: #ffe0b2; /* Laranja claro para aviso */
+    border: 1px solid #ffb74d;
+    border-radius: 8px;
+    color: #e65100; /* Laranja escuro */
+    font-size: 1.2em;
+    margin-top: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-back { /* Estilo para o botão "Voltar" */
+    display: inline-block;
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+.navbar {
+    background-color: #343a40; /* Cor de fundo escura (Bootstrap dark) */
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Alinha o brand à esquerda e os links à direita */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa toda a largura */
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.navbar-brand a {
+    color: #f8f9fa; /* Cor de texto clara */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none; /* Remove sublinhado */
+    white-space: nowrap; /* Evita quebra de linha em telas pequenas */
+}
+
+.navbar-nav {
+    list-style: none; /* Remove os marcadores de lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Exibe os itens em linha */
+    gap: 1.5rem; /* Espaçamento entre os itens */
+}
+
+.nav-item {
+    /* Não precisa de estilo extra aqui por enquanto */
+}
+
+.nav-link {
+    color: #f8f9fa; /* Cor de texto clara */
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave no hover */
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+.nav-link:hover {
+    background-color: #007bff; /* Azul no hover */
+    color: #ffffff;
+}
+
+.error-message {
+	       color: #dc3545; /* Vermelho vibrante para erros */
+	       font-size: 0.9em; /* Um pouco menor que o texto normal */
+	       margin-top: 5px; /* Espaço acima da mensagem de erro */
+	       margin-bottom: 0; /* Remove margem abaixo se não precisar */
+	       display: block; /* Garante que o parágrafo ocupe sua própria linha */
+	   }
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 20px;
+        margin-top: 15px;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .report-list {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 15px;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    .no-data-message, .report-list li {
+        font-size: 0.9em;
+    }
+}

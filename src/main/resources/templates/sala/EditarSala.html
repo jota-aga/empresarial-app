@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Sala</title>
+    <link rel="stylesheet" th:href="@{/css/editar.css}"> </head>
+<body>
+	<nav th:fragment="main-navbar" class="navbar">
+		    <div class="navbar-brand">
+		        <a th:href="@{/empresarial}">Início</a>
+		    </div>
+		    <ul class="navbar-nav">
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/cliente}" class="nav-link">Clientes</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/locatario}" class="nav-link">Locatários</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/sala}" class="nav-link">Salas</a>
+		        </li>
+		        <li class="nav-item">
+		            <a th:href="@{/empresarial/relatorio}" class="nav-link">Relatórios</a>
+		        </li>
+		    </ul>
+		</nav>
+    <div class="main-container"> <h2>Editar Sala</h2>
+		<div th:if="${mensagemSucesso}" class="success-message">
+		            <p th:text="${mensagemSucesso}"></p>
+		</div>
+        <div th:if="${mensagemErro}" class="error-message">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+		<div th:if="${salaDto}" class="form-section editable-form-section"> <h3>Dados da Sala para Edição</h3>
+		       <form method="post" th:action="@{/empresarial/sala/editar/edit}" th:object="${salaDto}" class="styled-form">
+		           <div class="form-group">
+						<label for="id">Id:</label>
+						<input type="text" id="id" name="id" th:field="*{id}" readonly>
+										
+					</div>
+					<div class="form-group">
+		               <label for="nome">Numero:</label>
+		               <input type="text" id="numero" name="numero" th:field="*{numero}" required>
+		           </div>
+
+				   <div class="form-group">
+				                   <label for="locatarioId">Locatário:</label>
+				                   <select id="locatarioId" th:field="*{locatarioId}" class="form-control">
+				                       <option value="">-- Selecione um Locatário (ou deixe vazio) --</option>
+				                       <option th:each="locatario : ${locatarios}" 
+				                               th:value="${locatario.id}" 
+				                               th:text="${locatario.name + ' (' + locatario.cpf + ')'}"
+				                               th:selected="${locatario.id == salaDto.locatarioId}"></option>
+				                   </select>
+						</div>
+				   
+				<button type="submit" class="btn-primary">Salvar Edição</button> 
+
+		           </form>
+		   </div>
+
+    </div>
+</body>
+</html>
